@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.motivo_consulta_list">
+      <field name="name">Motivo de Consulta</field>
+      <field name="model">neuroeduka.motivo_consulta</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_motivo"/>
+          <field name="precio"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.motivo_consulta_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.motivo_consulta</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar el motivo de la consulta" colspan="2"/>
+                            <field name="id"/>
+                            <field name="nombre_motivo"/>
+                            <field name="precio"/>
+                        </group>
+                        <notebook>
+                        <page string="Reserva">
+                            <group>
+                                <field name="reserva_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_motivo_consulta_action_window">
+      <field name="name">Listado de Motivos</field>    
+      <field name="res_model">neuroeduka.motivo_consulta</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_motivo_consulta_action_server">
+      <field name="name">motivo_consulta server</field>
+      <field name="model_id" ref="model_neuroeduka_motivo_consulta"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Motivos" id="neuroeduka_motivo_consulta" parent="menu_neuroeduka_3" action="neuroeduka_motivo_consulta_action_window"/>
+
+  </data>
+</odoo>
+
+ 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.boleta_pago_list">
+      <field name="name">Boleta de Pago</field>
+      <field name="model">neuroeduka.boleta_pago</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="paciente_id"/>
+          <field name="especialista_id"/>  
+          <field name="periodo_id"/> 
+          <field name="fecha_pago"/>
+          <field name="prevision"/>
+          <field name="medio_pago"/>
+          <field name="motivo_consulta_id"/>
+          <field name="monto_pagar"/>
+          <field name="num_voucher"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.boleta_pago_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.boleta_pago</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Pago" colspan="2"/>
+                              <field name="id"/>
+                              <field name="paciente_id"/> 
+                              <field name="especialista_id"/>   
+                              <field name="periodo_id"/> 
+                              <field name="fecha_pago"/>
+                              <field name="prevision"/>
+                              <field name="medio_pago"/>
+                              <field name="motivo_consulta_id" widget="many2many_checkboxes"/>
+                              <field name="monto_pagar"/>
+                              <field name="num_voucher"/>   
+                        </group>       
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="boleta_pago_search_view">
+          <field name="name">boleta_pago search</field>
+          <field name="model">neuroeduka.boleta_pago</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="fecha_pago"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_boleta_pago_action_window">
+      <field name="name">Listado de Boletas de Pago</field>    
+      <field name="res_model">neuroeduka.boleta_pago</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_boleta_pago_action_server">
+      <field name="name">boleta_pago server</field>
+      <field name="model_id" ref="model_neuroeduka_boleta_pago"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Boletas de Pago" id="neuroeduka_boleta_pago" parent="menu_neuroeduka_5" action="neuroeduka_boleta_pago_action_window"/>
+
+  </data>
+</odoo>

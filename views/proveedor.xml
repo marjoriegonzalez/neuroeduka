@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.proveedor_list">
+      <field name="name">Proveedor</field>
+      <field name="model">neuroeduka.proveedor</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_proveedor"/>
+          <field name="rut"/>
+          <field name="razon_social"/>
+          <field name="tipo_proveedor"/>  
+
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.proveedor_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.proveedor</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Proveedor" colspan="2"/>
+                              <field name="id"/>
+                              <field name="nombre_proveedor"/>
+                              <field name="rut"/>
+                              <field name="razon_social"/>
+                              <field name="tipo_proveedor"/>  
+                         </group>
+                              <notebook>
+                                <page string="Detalle de Producto">
+                                  <group>
+                                    <field name="producto_ids" colspan="4" nolabel="1"/>
+                                  </group>
+                                </page> 
+                              </notebook> 
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="proveedor_search_view">
+          <field name="name">proveedor search</field>
+          <field name="model">neuroeduka.proveedor</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="nombre_proveedor"/>
+                    <field name="rut"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_proveedor_action_window">
+      <field name="name">Listado de Proveedores</field>    
+      <field name="res_model">neuroeduka.proveedor</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_proveedor_action_server">
+      <field name="name">proveedor server</field>
+      <field name="model_id" ref="model_neuroeduka_proveedor"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Proveedores" id="neuroeduka_proveedor" parent="menu_neuroeduka_5" action="neuroeduka_proveedor_action_window"/>
+
+  </data>
+</odoo>

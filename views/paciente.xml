@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.tree_paciente_list">
+      <field name="name">Pacientes</field>
+      <field name="model">neuroeduka.paciente</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre"/>
+          <field name="rut"/>
+          <field name="fecha_nac"/>
+          <field name="email"/>
+          <field name="celular"/>
+          <field name="det_prevision"/>
+          <field name="acompanante"/>
+          <field name="escolaridad"/>
+          <field name="establecimiento"/>
+          <field name="nombre_edi"/>
+          <field name="derivado"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.paciente_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.paciente</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group col = "4">
+                            <separator string="Ingresar Paciente" colspan="4"/>
+                            <field name="id"/>
+                            <field name="nombre"/>
+                            <field name="rut"/>
+                            <field name="fecha_nac"/>
+                            <field name="email"/>
+                            <field name="celular"/>
+                            <field name="det_prevision"/>
+                            <field name="acompanante"/>
+                            <field name="escolaridad"/>
+                            <field name="establecimiento"/>
+                            <field name="nombre_edi"/>
+                            <field name="derivado"/>  
+                        </group>
+                        <notebook>
+                        <page string="Terapia">
+                            <group>
+                                <field name="terapia_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Familiar">
+                            <group>
+                                <field name="familiar_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Reservas">
+                            <group>
+                                <field name="reserva_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Consultas">
+                            <group>
+                                <field name="consulta_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Diagnóstico">
+                            <group>
+                                <field name="diagnostico_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Tratamientos">
+                            <group>
+                                <field name="tratamiento_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Boletas">
+                            <group>
+                                <field name="boleta_pago_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                         <page string="Datos Anamnesicos">
+                            <group>
+                                <field name="dato_anamnesico_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                         <page string="Evolución">
+                            <group>
+                                <field name="evolucion_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="paciente_search_view">
+          <field name="name">paciente search</field>
+          <field name="model">neuroeduka.paciente</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="nombre"/>
+                    <field name="rut"/>
+                    <field name="establecimiento"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_paciente_action_window">
+      <field name="name">Listado de Pacientes</field>    
+      <field name="res_model">neuroeduka.paciente</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_paciente_action_server">
+      <field name="name">paciente server</field>
+      <field name="model_id" ref="model_neuroeduka_paciente"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Pacientes" id="neuroeduka_paciente" parent="menu_neuroeduka" action="neuroeduka_paciente_action_window"/>
+
+  </data>
+</odoo>
+
+ 

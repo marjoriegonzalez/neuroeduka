@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.centro_educativo_list">
+      <field name="name">Centro Educativo</field>
+      <field name="model">neuroeduka.centro_educativo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="dato_anamnesico_id"/>     
+          <field name="nombre_centro"/>
+          <field name="tipo_centro"/>
+          <field name="nivel_centro"/>
+          <field name="fecha_asistencia"/>
+          <field name="ayuda_adicional"/>        
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.centro_educativo_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.centro_educativo</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Centros Educativos" colspan="2"/>
+                                <field name="id"/>
+                                <field name="dato_anamnesico_id"/>     
+                                <field name="nombre_centro"/>
+                                <field name="tipo_centro"/>
+                                <field name="nivel_centro"/>
+                                <field name="fecha_asistencia"/>
+                                <field name="ayuda_adicional"/>       
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="centro_educativo_search_view">
+          <field name="name">centro_educativo search</field>
+          <field name="model">neuroeduka.centro_educativo</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="nombre_centro"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_centro_educativo_action_window">
+      <field name="name">Listado de Centros Educativos</field>    
+      <field name="res_model">neuroeduka.centro_educativo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_centro_educativo_action_server">
+      <field name="name">centro_educativo server</field>
+      <field name="model_id" ref="model_neuroeduka_centro_educativo"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Centros Educativos" id="neuroeduka_centro_educativo" parent="menu_neuroeduka" action="neuroeduka_centro_educativo_action_window"/>
+
+  </data>
+</odoo>

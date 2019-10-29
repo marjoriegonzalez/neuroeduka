@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.parentesco_list">
+      <field name="name">Parentesco</field>
+      <field name="model">neuroeduka.parentesco</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_parentesco"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.parentesco_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.parentesco</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Parentesco" colspan="2"/>
+                            <field name="id"/>
+                            <field name="nombre_parentesco"/>
+                        </group>
+                        <notebook>
+                        <page string="Familiar">
+                            <group>
+                                <field name="familiar_ids" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_parentesco_action_window">
+      <field name="name">Listado de Parentesco</field>    
+      <field name="res_model">neuroeduka.parentesco</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_parentesco_action_server">
+      <field name="name">parentesco server</field>
+      <field name="model_id" ref="model_neuroeduka_parentesco"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Parentesco" id="neuroeduka_parentesco" parent="menu_neuroeduka" action="neuroeduka_parentesco_action_window"/>
+
+  </data>
+</odoo>
+
+ 

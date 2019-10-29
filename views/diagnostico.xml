@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.diagnostico_list">
+      <field name="name">Diagnóstico</field>
+      <field name="model">neuroeduka.diagnostico</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="paciente_id"/>
+          <field name="consulta_id"/>
+          <field name="descripcion_diagno"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.diagnostico_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.diagnostico</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Diagnóstico" colspan="2"/>
+                                <field name="id"/>
+                                <field name="paciente_id"/>
+                                <field name="consulta_id"/>
+                                <field name="descripcion_diagno"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_diagnostico_action_window">
+      <field name="name">Listado de Diagnósticos</field>    
+      <field name="res_model">neuroeduka.diagnostico</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_diagnostico_action_server">
+      <field name="name">diagnostico server</field>
+      <field name="model_id" ref="model_neuroeduka_diagnostico"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Diagnósticos" id="neuroeduka_diagnostico" parent="menu_neuroeduka" action="neuroeduka_diagnostico_action_window"/>
+
+  </data>
+</odoo>
+
+ 

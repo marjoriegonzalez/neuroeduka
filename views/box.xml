@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.box_list">
+      <field name="name">Box</field>
+      <field name="model">neuroeduka.box</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_box"/>
+          <field name="detalle_box"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.box_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.box</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Box" colspan="2"/>
+                            <field name="id"/>
+                            <field name="nombre_box"/>
+                            <field name="detalle_box"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="box_search_view">
+          <field name="name">box search</field>
+          <field name="model">neuroeduka.box</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="nombre_box"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_box_action_window">
+      <field name="name">Listado de Box</field>    
+      <field name="res_model">neuroeduka.box</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_box_action_server">
+      <field name="name">box server</field>
+      <field name="model_id" ref="model_neuroeduka_box"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Box" id="neuroeduka_box" parent="menu_neuroeduka_2" action="neuroeduka_box_action_window"/>
+
+  </data>
+</odoo>
+
+ 

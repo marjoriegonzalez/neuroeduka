@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>  
+      <menuitem name="Centro Médico NeuroEduka" id="neuroeduka_menu_root"/>
+
+    <!-- menu categories -->
+    
+    <menuitem name="Pacientes" id="menu_neuroeduka" parent="neuroeduka_menu_root"/>
+
+    <menuitem name="Agenda" id="menu_neuroeduka_1" parent="neuroeduka_menu_root"/>
+
+    <menuitem name="Reservas" id="menu_neuroeduka_2" parent="neuroeduka_menu_root"/>
+
+    <menuitem name="Consultas" id="menu_neuroeduka_3" parent="neuroeduka_menu_root"/>
+
+    <menuitem name="Especialistas" id="menu_neuroeduka_4" parent="neuroeduka_menu_root"/>
+
+    <menuitem name="Estados Financieros" id="menu_neuroeduka_5" parent="neuroeduka_menu_root"/>
+    
+  </data>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+ 
+    <record model="ir.ui.view" id="neuroeduka.tree_evolucion_list">
+      <field name="name">Listado de Evolucion</field>
+      <field name="model">neuroeduka.evolucion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="paciente_id"/>
+          <field name="especialista_id"/>
+          <field name="fecha_evolucion"/>
+          <field name="quien_consulta"/>
+          <field name="antecedente_familiar"/>
+          <field name="antecedente_escolar"/>
+          <field name="proceso"/>
+          <field name="objetivo"/>
+          <field name="recurso_id"/>
+          <field name="sugerencia"/>
+          <field name="prox_sesion"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.evolucion_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.evolucion</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group col ="2">
+                            <separator string="Evolucion" colspan="2"/>
+                            <field name="id"/>
+                            <field name="paciente_id"/>
+                            <field name="especialista_id"/>   
+                            <field name="fecha_evolucion"/>
+                            <field name="quien_consulta"/>
+                            <field name="antecedente_familiar"/>
+                            <field name="antecedente_escolar"/>
+                            <field name="proceso"/>
+                            <field name="recurso_id" widget="many2many_checkboxes"/>
+                            <field name="sugerencia"/>
+                            <field name="prox_sesion"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    <record model="ir.actions.act_window" id="neuroeduka_evolucion_action_window">
+      <field name="name">Listado de Evolucion</field>   
+      <field name="res_model">neuroeduka.evolucion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record model="ir.actions.server" id="neuroeduka_evolucion_action_server">
+      <field name="name">evolucion server</field>
+      <field name="model_id" ref="model_neuroeduka_evolucion"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Evolución" id="neuroeduka_evolucion" parent="menu_neuroeduka" action="neuroeduka_evolucion_action_window"/>
+  </data>
+</odoo>

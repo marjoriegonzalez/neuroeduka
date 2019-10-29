@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.factura_list">
+      <field name="name">Factura</field>
+      <field name="model">neuroeduka.factura</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="num_factura"/>  
+          <field name="administrador_id"/>  
+          <field name="periodo_id"/>
+          <field name="fecha_factura"/>
+          <field name="monto_total"/>
+          <field name="comentario"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.factura_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.factura</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Factura" colspan="2"/>
+                              <field name="id"/>
+                              <field name="num_factura"/>  
+                              <field name="administrador_id"/> 
+                              <field name="periodo_id"/>
+                              <field name="fecha_factura"/>
+                              <field name="monto_total"/>
+                              <field name="comentario"/>
+                        </group> 
+                              <notebook>
+                                <page string="Detalle de Factura">
+                                  <group>
+                                    <field name="detalle_factura_ids" colspan="4" nolabel="1"/>
+                                  </group>
+                                </page>
+                                <page string="Resultado Operacional">
+                                  <group>
+                                    <field name="resultado_operacional_ids" colspan="4" nolabel="1"/>
+                                  </group>
+                                </page> 
+                              </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="factura_search_view">
+          <field name="name">factura search</field>
+          <field name="model">neuroeduka.factura</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="fecha_factura"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_factura_action_window">
+      <field name="name">Listado de Facturas</field>    
+      <field name="res_model">neuroeduka.factura</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_factura_action_server">
+      <field name="name">factura server</field>
+      <field name="model_id" ref="model_neuroeduka_factura"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Facturas" id="neuroeduka_factura" parent="menu_neuroeduka_5" action="neuroeduka_factura_action_window"/>
+
+  </data>
+</odoo>

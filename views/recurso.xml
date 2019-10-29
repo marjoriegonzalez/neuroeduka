@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.tree_recurso_list">
+      <field name="name">Recurso</field>
+      <field name="model">neuroeduka.recurso</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_recurso"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.recurso_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.recurso</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Recurso" colspan="2"/>
+                              <field name="id"/>
+                              <field name="nombre_recurso"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+    
+    <record model="ir.actions.act_window" id="neuroeduka_recurso_action_window">
+      <field name="name">Listado de Recursos</field>    
+      <field name="res_model">neuroeduka.recurso</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_recurso_action_server">
+      <field name="name">recurso server</field>
+      <field name="model_id" ref="model_neuroeduka_recurso"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Recursos Terapeuticos" id="neuroeduka_recurso" parent="menu_neuroeduka" action="neuroeduka_recurso_action_window"/>
+
+  </data>
+</odoo>
+
+ 

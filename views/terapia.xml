@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.terapia_list">
+      <field name="name">Terapias</field>
+      <field name="model">neuroeduka.terapia</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="paciente_id"/>
+          <field name="nombre_t"/>
+          <field name="profesion"/>
+          <field name="desde_c"/>
+          <field name="donde_a"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.terapia_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.terapia</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Terapia" colspan="2"/>
+                            <field name="paciente_id"/>
+                            <field name="id"/>
+                            <field name="nombre_t"/>
+                            <field name="profesion"/>
+                            <field name="desde_c"/>
+                            <field name="donde_a"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_terapia_action_window">
+      <field name="name">Listado de Terapia</field>    
+      <field name="res_model">neuroeduka.terapia</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_terapia_action_server">
+      <field name="name">terapia server</field>
+      <field name="model_id" ref="model_neuroeduka_terapia"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Terapias" id="neuroeduka_terapia" parent="menu_neuroeduka" action="neuroeduka_terapia_action_window"/>
+
+  </data>
+</odoo>
+
+ 

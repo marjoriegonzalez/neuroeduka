@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+ 
+    <record model="ir.ui.view" id="neuroeduka.tree_reserva_list">
+      <field name="name">Listado de Reservas</field>
+      <field name="model">neuroeduka.reserva</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="fecha"/>
+          <field name="estado"/>
+          <field name="paciente_id"/>
+          <field name="especialista_id"/>
+          <field name="box_id"/>
+          <field name="motivo_consulta_id"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.reserva_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.reserva</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                  <header>
+                    <field name="estado" widget="statusbar" clickable="True"/>
+                  </header>
+                    <sheet>
+                        <group col ="2">
+                            <separator string="Reservas" colspan="2"/>
+                            <field name="id"/>
+                            <field name="fecha"/>
+                            <field name="paciente_id"/>
+                            <field name="especialista_id"/>
+                            <field name="box_id"/>
+                            <field name="motivo_consulta_id"/>
+                            <field name="estado" widget="statusbar" clickable="True"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+      
+    
+      <record model="ir.ui.view" id="neuroeduka.reserva_view">
+            <field name="name">Calendario</field>
+            <field name="model">neuroeduka.reserva</field>
+            <field name="arch" type="xml">
+                <form string="reserva">
+                  <header>
+                    <field name="estado" widget="statusbar" clickable="True"/>
+                  </header>
+                  <sheet>
+                    <group col="2">
+                        <separator string="Ingresar Reserva" colspan="2"/>
+                        <field name="paciente_id" colspan="2"/>
+                        <field name="especialista_id" colspan="2"/>
+                        <field name="box_id" colspan="2"/>
+                        <field name="motivo_consulta_id"/>
+                        <field name="fecha" colspan="2"/>
+                        <field name="estado" widget="statusbar" clickable="True"/>
+                    </group>
+                  </sheet>
+                </form>
+            </field>
+      </record>
+       
+      <record model="ir.ui.view" id="reserva_calendar_view">
+            <field name="name"> reserva </field>
+            <field name="model">neuroeduka.reserva</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="fecha"  color="paciente_id">
+                    <field name="paciente_id"/>
+                </calendar>
+            </field>
+      </record>
+
+      <record model="ir.ui.view" id="reserva_search_view">
+          <field name="name">reserva search</field>
+          <field name="model">neuroeduka.reserva</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="fecha"/>
+                    <field name="paciente_id"/>
+                    <field name="especialista_id"/>
+                    <field name="box_id" colspan="2"/>
+                    <field name="motivo_consulta_id"/>
+                </search>
+            </field>
+      </record>
+
+
+    <record model="ir.actions.act_window" id="neuroeduka_reserva_action_window">
+      <field name="name">Listado de Reservas</field>   
+      <field name="res_model">neuroeduka.reserva</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+    
+    <record model="ir.actions.server" id="neuroeduka_reserva_action_server">
+      <field name="name">reserva server</field>
+      <field name="model_id" ref="model_neuroeduka_reserva"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Reservas" id="neuroeduka_reserva" parent="menu_neuroeduka_2" action="neuroeduka_reserva_action_window"/>
+  </data>
+</odoo>

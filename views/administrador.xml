@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.tree_administrador_list">
+      <field name="name">Administrador</field>
+      <field name="model">neuroeduka.administrador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_admi"/>
+          <field name="rut_admi"/>
+          <field name="celular"/>
+          <field name="email"/>  
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.administrador_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.administrador</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Administrador" colspan="2"/>
+                              <field name="id"/>
+                              <field name="nombre_admi"/>
+                              <field name="rut_admi"/>
+                              <field name="celular"/>
+                              <field name="email"/> 
+                        </group> 
+                              <notebook>
+                                <page string="Factura">
+                                  <group>
+                                    <field name="factura_ids" colspan="4" nolabel="1"/>
+                                  </group>
+                                </page> 
+                              </notebook> 
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="administrador_search_view">
+          <field name="name">administrador search</field>
+          <field name="model">neuroeduka.administrador</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="nombre_admi"/>
+                    <field name="rut_admi"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_administrador_action_window">
+      <field name="name">Listado de Administradores</field>    
+      <field name="res_model">neuroeduka.administrador</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_administrador_action_server">
+      <field name="name">administrador server</field>
+      <field name="model_id" ref="model_neuroeduka_administrador"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Administradores" id="neuroeduka_administrador" parent="menu_neuroeduka_5" action="neuroeduka_administrador_action_window"/>
+
+  </data>
+</odoo>
+
+ 

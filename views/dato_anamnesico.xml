@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.tree_dato_anamnesico_list">
+      <field name="name">Dato Ananmesico</field>
+      <field name="model">neuroeduka.dato_anamnesico</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="paciente_id"/> 
+          <field name="fecha"/>
+          <field name="motivo_consultad"/>
+          <field name="antecedente_clinico"/>
+          <field name="descripcion_mama"/>
+          <field name="descripcion_papa"/>
+          <field name="area_escolar"/>
+          <field name="area_academica"/>
+          <field name="area_afectiva"/>
+          <field name="area_social"/>
+          <field name="embarazo"/>
+          <field name="consumo_embarazo"/>
+          <field name="enfermedad_embarazo"/>
+          <field name="parto"/>
+          <field name="forse"/>
+          <field name="peso"/>
+          <field name="talla"/>
+          <field name="semanas_gestacion"/>
+          <field name="enfermedad"/>
+          <field name="sueno"/>
+          <field name="alimentacion"/>
+          <field name="apego"/>
+          <field name="observacion"/> 
+          <field name="balbuceo"/>
+          <field name="primera_palabra"/>
+          <field name="frase_dospalabras"/>
+          <field name="frase_compleja"/>
+          <field name="observacion_l"/>
+          <field name="tepsi"/>
+          <field name="control_encefalico"/>
+          <field name="sedestacion"/>
+          <field name="gateo"/>
+          <field name="perdida_h"/>
+          <field name="h_motor"/>
+          <field name="h_avd"/>
+          <field name="juego_imag"/>  
+          <field name="interaccion"/>
+          <field name="observacion_d"/>
+          <field name="diurno"/>
+          <field name="nocturno"/>
+          <field name="vesical"/>
+          <field name="intestinal"/>
+          <field name="observacion_e"/>
+          <field name="sueno"/>
+          <field name="dificultad_inicio"/>
+          <field name="insonmio"/>
+          <field name="hora_despierta"/>
+          <field name="hora_acostarse"/>
+          <field name="observacion_s"/>                        
+          <field name="area_familiar"/>
+          <field name="area_personal"/>
+          <field name="juego"/>
+          <field name="rutina_actual"/>  
+          <field name="ant_morbidos_familiar"/> 
+          <field name="ant_morbidos_personal"/>  
+          <field name="hipotesis"/> 
+          <field name="actitud"/>  
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.dato_anamnesico_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.dato_anamnesico</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group col = "4">
+                            <separator string="Ingresar Datos Ananmesicos" colspan="4"/>
+                                <field name="id"/>
+                                <field name="paciente_id"/>  
+                                <field name="fecha"/>
+                                <field name="motivo_consultad"/>
+                                <field name="antecedente_clinico"/>
+                                <field name="descripcion_mama"/>
+                                <field name="descripcion_papa"/>
+                                <field name="area_escolar"/>
+                                <field name="area_academica"/>
+                                <field name="area_afectiva"/>
+                                <field name="area_social"/>
+                                <separator string="Antecedentes del Desarrollo" colspan="4"/>
+                                <field name="embarazo"/>
+                                <field name="consumo_embarazo"/>
+                                <field name="enfermedad_embarazo"/>
+                                <field name="parto"/>
+                                <field name="forse"/>
+                                <field name="peso"/>
+                                <field name="talla"/>
+                                <field name="semanas_gestacion"/>
+                                <separator string="Antecedentes Postnatales" colspan="4"/>
+                                <field name="enfermedad"/>
+                                <field name="sueno"/>
+                                <field name="alimentacion"/>
+                                <field name="apego"/>
+                                <field name="observacion"/>  
+                                <separator string="Desarrollo Lingüístico" colspan="4"/> 
+                                <field name="balbuceo"/>
+                                <field name="primera_palabra"/>
+                                <field name="frase_dospalabras"/>
+                                <field name="frase_compleja"/>
+                                <field name="observacion_l"/> 
+                                <separator string="Desarrollo Psicomotor" colspan="4"/> 
+                                <field name="tepsi"/>
+                                <field name="control_encefalico"/>
+                                <field name="sedestacion"/>
+                                <field name="gateo"/>
+                                <field name="perdida_h"/>
+                                <field name="h_motor"/>
+                                <field name="h_avd"/>
+                                <field name="juego_imag"/>  
+                                <field name="interaccion"/>
+                                <field name="observacion_d"/>
+                                <separator string="Control de Esfinter" colspan="4"/>    
+                                <field name="diurno"/>
+                                <field name="nocturno"/>
+                                <field name="vesical"/>
+                                <field name="intestinal"/>
+                                <field name="observacion_e"/> 
+                                <separator string="Sueño" colspan="4"/>   
+                                <field name="sueno"/>
+                                <field name="dificultad_inicio"/>
+                                <field name="insonmio"/>
+                                <field name="hora_despierta"/>
+                                <field name="hora_acostarse"/>
+                                <field name="observacion_s"/>
+                                <separator string="Areas" colspan="4"/>      
+                                <field name="area_familiar"/>
+                                <field name="area_personal"/>
+                                <field name="juego"/>
+                                <field name="rutina_actual"/>  
+                                <field name="ant_morbidos_familiar"/> 
+                                <field name="ant_morbidos_personal"/>  
+                                <field name="hipotesis"/> 
+                                <field name="actitud"/>  
+                                </group>
+                              <notebook>
+                                <page string="Centro Educativo">
+                                  <group>
+                                    <field name="centro_educativo_ids" colspan="2" nolabel="1"/>
+                                  </group>
+                                </page>
+                              </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="dato_anamnesico_search_view">
+          <field name="name">dato_anamnesico search</field>
+          <field name="model">neuroeduka.dato_anamnesico</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="motivo_consultad"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_dato_anamnesico_action_window">
+      <field name="name">Listado de Datos Ananmesicos</field>    
+      <field name="res_model">neuroeduka.dato_anamnesico</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_dato_anamnesico_action_server">
+      <field name="name">dato_anamnesico server</field>
+      <field name="model_id" ref="model_neuroeduka_dato_anamnesico"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Datos Ananmesicos" id="neuroeduka_dato_anamnesico" parent="menu_neuroeduka" action="neuroeduka_dato_anamnesico_action_window"/>
+
+  </data>
+</odoo>

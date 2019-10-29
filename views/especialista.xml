@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="neuroeduka.especialidad_list">
+      <field name="name">Especialistas</field>
+      <field name="model">neuroeduka.especialista</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id"/>
+          <field name="nombre_es"/>
+          <field name="rut_es"/>
+          <field name="especialidad_id"/>
+
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="neuroeduka.especialista_form">
+            <field name="name">neuroeduka</field>
+            <field name="model">neuroeduka.especialista</field>
+            <field name="arch" type="xml">
+                <form string="neuroeduka form">
+                    <sheet>
+                        <group>
+                            <separator string="Ingresar Especialista" colspan="2"/>
+                            <field name="id"/>
+                            <field name="nombre_es"/>
+                            <field name="rut_es"/>
+                            <field name="especialidad_id"/>
+                        </group>
+                          <notebook>
+                               <page string="Boleta de Pago">
+                                  <group>
+                                    <field name="boleta_pago_ids" colspan="4" nolabel="1"/>
+                                  </group>
+                                </page>
+                          </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record model="ir.ui.view" id="especialista_search_view">
+          <field name="name">especialista search</field>
+          <field name="model">neuroeduka.especialista</field>
+          <field name="arch" type="xml">
+                <search>
+                    <field name="nombre_es"/>
+                    <field name="rut_es"/>
+                </search>
+            </field>
+        </record>
+
+
+    
+    <record model="ir.actions.act_window" id="neuroeduka_especialista_action_window">
+      <field name="name">Listado de Especialistas</field>    
+      <field name="res_model">neuroeduka.especialista</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record model="ir.actions.server" id="neuroeduka_especialista_action_server">
+      <field name="name">especialista server</field>
+      <field name="model_id" ref="model_neuroeduka_especialista"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+    <menuitem name="Listado de Especialistas" id="neuroeduka_especialista" parent="menu_neuroeduka_4" action="neuroeduka_especialista_action_window"/>
+
+  </data>
+</odoo>
+
+ 
